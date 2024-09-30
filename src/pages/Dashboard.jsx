@@ -1,27 +1,31 @@
 import React, { useEffect, useState } from "react";
-import Card from "react-bootstrap/Card";
-import Data from "../components/Data";
+import { Image,Row,Col } from "react-bootstrap";
 
-const Dashboard = () => {
+const Dashboard = ({poke}) => {
+  const [images,setImages] = useState([]);
+  console.log(poke);
+  const image = poke.map((item)=>{
+    return item.images;
+  })
+  console.log(image)
+  useEffect(()=>{
+    setImages(image)
+
+  },[])
   return (
     <div>
-      {" "}
-      <h2 style={{ textAlign: "center" }}>
-        Only authroized person can access this page{" "}
-      </h2>
-      <Card className="bg-dark text-white">
-        <Card.Img src="..." alt="Card image" />
-        <Card.ImgOverlay>
-          <Card.Title>Card title</Card.Title>
-          <Card.Text>
-            This is a wider card with supporting text below as a natural lead-in
-            to additional content. This content is a little bit longer.
-          </Card.Text>
-          <Card.Text>Last updated 3 mins ago</Card.Text>
-        </Card.ImgOverlay>
-      </Card>
-      <Data/>
-    </div>
+    <Row>
+      {images.map((item, idx) => (
+        <Col key={idx} md={3} sm={6} xs={12} className="mb-4">
+          <Image 
+            style={{ width: "18rem" }} 
+            src={item.large} 
+            fluid 
+          />
+        </Col>
+      ))}
+    </Row>
+  </div>
   );
 };
 

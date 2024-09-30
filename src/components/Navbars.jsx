@@ -17,7 +17,7 @@ function Navbars() {
               style={{ maxHeight: "100px" }}
               navbarScroll
             >
-              <Link className="items" to="/home">
+              <Link className="items" to="/">
                 Home
               </Link>
               <Link className="items" to="/categories">
