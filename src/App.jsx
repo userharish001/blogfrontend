@@ -11,6 +11,8 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import NotFound from "./components/NotFound";
 import axios from "axios";
+import Cards from "./components/Cards";
+import LogOut from "./components/LogOut";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -49,31 +51,31 @@ const App = () => {
     fetchPoke();
   }, []);
   // console.log(data);
-  async function fetchPokemon() {
-    try {
-      const res = await axios.get(url3);
-      const data = res.data.results;
-      // console.log(data);
-      const detailedresults = data.map((item) => {
-        return item.url;
-      });
-      // console.log(detailedresults);
-      setPokemon(detailedresults);
-      // const fetchAllUrls = async (urls) => {
-      //   try {
-      //     const responses = await Promise.all(pokemon);
-      //   } catch (error) {
-      //     console.error("Error fetching data: ", error);
-      //   }
-      // };
-      // fetchAllUrls()
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  useEffect(() => {
-    fetchPokemon();
-  }, []);
+  // async function fetchPokemon() {
+  //   try {
+  //     const res = await axios.get(url3);
+  //     const data = res.data.results;
+  //     // console.log(data);
+  //     const detailedresults = data.map((item) => {
+  //       return item.url;
+  //     });
+  //     // console.log(detailedresults);
+  //     setPokemon(detailedresults);
+  //     // const fetchAllUrls = async (urls) => {
+  //     //   try {
+  //     //     const responses = await Promise.all(pokemon);
+  //     //   } catch (error) {
+  //     //     console.error("Error fetching data: ", error);
+  //     //   }
+  //     // };
+  //     // fetchAllUrls()
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+  // useEffect(() => {
+  //   fetchPokemon();
+  // }, []);
 
   return (
     <div>
@@ -88,6 +90,7 @@ const App = () => {
         </Route>
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<LogOut />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

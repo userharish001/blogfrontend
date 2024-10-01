@@ -43,6 +43,7 @@ function Navbars() {
             >
               <NavDropdown.Item href="/signup">Sign-up</NavDropdown.Item>
               <NavDropdown.Item href="/login">Login</NavDropdown.Item>
+              <NavDropdown.Item href="/logout">Logout</NavDropdown.Item>
               <NavDropdown.Divider />
             </NavDropdown>
           </Navbar.Collapse>
