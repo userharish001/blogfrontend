@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import news from "/news.jpg";
 
 const Posts = () => {
-  const [posts, setPosts] = useState({});
+  const [posts, setPosts] = useState([]);
   const key = "ac89a24e48ec4414b4ecc07148217682";
   const url = `https://newsapi.org/v2/everything?q=bitcoin&apiKey=${key}`;
   useEffect(() => {
@@ -10,6 +10,8 @@ const Posts = () => {
       try {
         const res = await fetch(url);
         const post = await res.json();
+        // console.log(post);
+
         const allpost = post.articles;
         setPosts(allpost);
       } catch (error) {
@@ -19,6 +21,9 @@ const Posts = () => {
     };
     fetchData();
   }, []);
+
+  // console.log(posts.length);
+
   return (
     <div
       style={{
@@ -35,7 +40,7 @@ const Posts = () => {
             item,
             index // Use index as key
           ) => (
-            <div>
+            <div key={index}>
               <h2>{item.index}</h2>
               <div className="card" style={{ width: 18 + "rem" }}>
                 <img
