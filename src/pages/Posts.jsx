@@ -34,7 +34,7 @@ const Posts = () => {
         alignContent: "center",
       }}
     >
-      {posts?.length > 0 ? (
+      {Array.isArray(posts) && posts.length > 0 ? (
         posts.map(
           (
             item,
