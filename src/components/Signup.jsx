@@ -1,94 +1,107 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 import { Link, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Signup() {
-  const [inputs, setInputs] = useState({});
+  const [name, setName] = useState();
+  const [email, setEmail] = useState();
+  const [password, setPassword] = useState();
   const navigate = useNavigate();
+
   function handlesignup() {
     navigate("/login");
   }
-  function handleInput(event) {
-    const name = event.target.name;
-    console.log(name);
-    const value = event.target.value;
-    console.log(value);
-    setInputs({ ...inputs, [name]: value });
-  }
   function handleSubmit(event) {
     event.preventDefault();
-    alert(inputs);
-    console.log(inputs);
+    // console.log(inputs);
+    axios
+      .post("http://localhost:3001/register", { name, email, password })
+      .then((res) => {
+        console.log(res);
+        toast.success("User created successfully!",{position:"top-right"});
+        setTimeout(()=>{
+          navigate("/login");
+        },2000)
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("An error occurred. Please try again.");
+      });
+    //   let user = {
+    //     name: inputs.name,
+    //     email: inputs.email,
+    //     password: inputs.password,
+    //   };
+    //   localStorage.setItem("userData", JSON.stringify(user));
+    //   toast.success("Signup successful!");
+    //   handlesignup();
   }
-  let user = {
-    name: inputs.name,
-    email: inputs.email,
-    password: inputs.password,
-    user: inputs.user,
-  };
-  localStorage.setItem("userData", JSON.stringify(user));
-  return (
-    <form onSubmit={handleSubmit} aria-required>
-      <Form className="form">
-        <h2 className="text-center">Signup</h2>
-        <Form.Group className="mb-1" id="name">
-          <Form.Label>Enter first name</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="first name"
-            name="name"
-            value={inputs.name || ""}
-            onChange={handleInput} 
-          />
-        </Form.Group>
-        <Form.Group className="mb-1">
-          <Form.Label>Enter last name</Form.Label>
-          <Form.Control type="text" placeholder="last name " />
-        </Form.Group>
-        <Form.Group className="mb-1">
-          <Form.Label>User type</Form.Label>
-          <Form.Control
-            type="text"
-            placeholder="user category"
-            name="user"
-            value={inputs.user || ""}
-            onChange={handleInput} 
-          />
-        </Form.Group>
-        <Form.Group className="mb-1" id="email">
-          <Form.Label>Email address</Form.Label>
-          <Form.Control
-            type="email"
-            placeholder="Enter email"
-            name="email"
-            value={inputs.email || ""}
-            onChange={handleInput}
-          />
-        </Form.Group>
-        <Form.Group className="mb-1" id="password">
-          <Form.Label>Password</Form.Label>
-          <Form.Control
-            type="password"
-            placeholder="Password"
-            name="password"
-            value={inputs.password || ""}
-            onChange={handleInput}
-          />
-        </Form.Group>
-        <Button variant="primary" onClick={handlesignup} type="submit">
-          Signup
-        </Button>
 
-        <p>
-          If already have account{" "}
-          <Link style={{ textDecoration: "none", color: "red" }} to="/login">
-            Login
-          </Link>
-        </p>
-      </Form>
-    </form>
+  return (
+    <Container className="d-flex align-items-center justify-content-center min-vh-100">
+      <Row className="w-100">
+        <Col xs={12} sm={8} md={6} lg={4} className="mx-auto">
+          <Form
+            onSubmit={handleSubmit}
+            className="p-4 border rounded bg-light shadow"
+          >
+            <h2 className="text-center mb-4 text-black">Signup</h2>
+            <Form.Group className="mb-3" controlId="name">
+              <Form.Label className="text-black">First Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter first name"
+                name="name"
+                value={name || ""}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="email">
+              <Form.Label className="text-black">Email Address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="Enter email"
+                name="email"
+                value={email || ""}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="password">
+              <Form.Label className="text-black" >Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Enter password"
+                name="password"
+                value={password || ""}
+                maxLength={8}
+                minLength={4}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit" className="w-100 mb-3">
+              Signup
+            </Button>
+            <p className="text-center text-danger">
+              Already have an account?{" "}
+              <Link to="/login" className="text-decoration-none text-primary">
+                Login
+              </Link>
+            </p>
+          </Form>
+        </Col>
+      </Row>
+      <ToastContainer/>
+    </Container>
   );
 }
 

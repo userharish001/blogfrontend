@@ -4,11 +4,11 @@ import App from "./App.jsx";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider } from "./components/ThemeContext.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <BrowserRouter>
-    <StrictMode>
-      <App />
-    </StrictMode>
-  </BrowserRouter>
+      <ThemeProvider>
+        <App />
+      </ThemeProvider>
+    
 );

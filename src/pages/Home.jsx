@@ -1,59 +1,25 @@
-import React, { useEffect, useState } from "react";
-import { Image, Spinner, Alert, Row, Col } from "react-bootstrap";
+import React from "react";
 import Footer from "../components/Footer";
-import axios from "axios";
+import blogbanner from "../../src/assets/blogbanner.jpg";
+import CardsItem from "../components/CardsItem";
 
-const Home = ({ data, image }) => {
-  const [cat, setCat] = useState([]);
-  const [loading, setLoading] = useState(true); // Add loading state
-  const [error, setError] = useState(null); // Add error state
-
-  async function fetchCats() {
-    setLoading(true); // Set loading to true before fetching
-    setError(null); // Reset any previous errors
-    try {
-      const res = await axios.get(
-        "https://api.thecatapi.com/v1/images/search?limit=10"
-      );
-      setCat(res.data); // Set the cat data
-    } catch (error) {
-      setError("Failed to load cat images. Please try again."); // Handle error
-    } finally {
-      setLoading(false); // Stop loading regardless of success or error
-    }
-  }
-
-  useEffect(() => {
-    fetchCats();
-  }, []);
+const Home = () => {
 
   return (
     <div>
-      <p className="h1 text-center px-2 py-1 text-bg-dark">Blog app</p>
-      <Image
-        src={image}
-        fluid
-        style={{ objectFit: "cover", height: 18 + "rem", width: "100%" }}
+      <p className="h1 text-center px-2 py-1">Blog App</p>
+      <img
+        src={blogbanner}
+        style={{ objectFit: "cover", width: "100%" }}
+        alt="Blog Banner"
       />
-      {loading && <Spinner animation="border" />}{" "}
-      {/* Show spinner while loading */}
-      {error && <Alert variant="danger">{error}</Alert>}{" "}
-      {/* Show error message if any */}
-      {!loading && !error && Array.isArray(cat) && (
-        <Row>
-          {cat.map((item) => (
-            <Col key={item.id} md={2} sm={6} xs={12} className="mb-4">
-              <Image src={item.url} fluid style={{ height: "100%", width: "100%" }} />
-            </Col>
-          ))}
-        </Row>
-      )}
-      {data.map((breed, index) => (
-        <ul key={index}>
-          <li>{breed.name}</li>
-          <p className="p-2">{breed.description}</p>
-        </ul>
-      ))}
+      <p className="p-4 m-1 text-center">
+        Discover a world of insights, stories, and inspiration. Our blog offers
+        a diverse range of topics, from travel and food to technology and
+        wellness. Join us on this journey as we explore the latest trends, share
+        personal experiences, and provide tips to enrich your daily life.
+      </p>
+      <CardsItem />
       <Footer />
     </div>
   );

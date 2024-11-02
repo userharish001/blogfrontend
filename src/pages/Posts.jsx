@@ -8,7 +8,12 @@ const Posts = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch(url);
+        const res = await fetch(url, {
+          headers: {
+            Upgrade: "HTTP/2.0",
+          },
+        });
+
         const post = await res.json();
         // console.log(post);
 

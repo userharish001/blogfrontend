@@ -3,7 +3,9 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import blogimage2 from "/blogimage2.jpg";
-import { Link, Outlet } from "react-router-dom";
+import { Link} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 function Navbars() {
   return (
     <div>
@@ -20,9 +22,6 @@ function Navbars() {
               <Link className="items" to="/">
                 Home
               </Link>
-              <Link className="items" to="/categories">
-                Categories
-              </Link>
               <Link className="items" to="/posts">
                 Posts
               </Link>
@@ -32,7 +31,7 @@ function Navbars() {
               <Link className="items" to="/contact">
                 Contactus
               </Link>
-              <Link className="items" to="/dashboard">
+              <Link className="items" to="/signup">
                 Dashboard
               </Link>
             </Nav>
@@ -49,7 +48,6 @@ function Navbars() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <Outlet />
     </div>
   );
 }
