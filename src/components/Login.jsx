@@ -16,7 +16,7 @@ function Login() {
   function handlebutton(event) {
     event.preventDefault();
     axios
-      .post("https://blogbackend-lmj9.onrender.com/login", { email, password })
+      .post("https://blogbackend-tbku.onrender.com/login", { email, password })
       .then((res) => {
         if (res.data === "success") {
           toast.success("Login successful!", { position: "top-right" });
