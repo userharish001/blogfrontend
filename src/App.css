@@ -13,8 +13,6 @@
 .text-light {
   color: #f8f9fa !important;
 }
-
-
 .nav-image{
   height:30px;
   width:100px;
@@ -67,10 +65,7 @@
   bottom:100%;
   left:0%;
   right:0%;
-
-  
 }
-
 .footer-container {
   display: flex;
   flex-wrap: wrap;
@@ -126,8 +121,6 @@
 .social-icons li {
   margin-right: 15px;
 }
-
-/* Responsive styles */
 @media (max-width: 768px) {
   .footer-container {
     flex-direction: column;
@@ -138,7 +131,6 @@
     justify-content: center;
   }
 }
-/* From Uiverse.io by adamgiebl */ 
 .cards {
   width: 190px;
   height: 254px;
@@ -169,8 +161,7 @@ box-shadow:  20px 20px 40px #828282,
 .button:hover{
   box-shadow:1px 4px 3px green inset,2px 3px 3px orange;
 }
-/* From Uiverse.io by alexruix */ 
-/* The switch - the box around the slider */
+
 .switch {
   font-size: 17px;
   position: relative;
@@ -178,15 +169,11 @@ box-shadow:  20px 20px 40px #828282,
   width: 3.5em;
   height: 2em;
 }
-
-/* Hide default HTML checkbox */
 .switch input {
   opacity: 0;
   width: 0;
   height: 0;
 }
-
-/* The slider */
 .slider {
   --background: #28096b;
   position: absolute;
