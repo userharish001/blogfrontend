@@ -22,7 +22,7 @@ function Signup() {
     event.preventDefault();
     // console.log(inputs);
     axios
-      .post("https://blogbackend-tbku.onrender.com/register", { name, email, password })
+      .post("https://blogbackend-hzdo.onrender.com/register", { name, email, password })
       .then((res) => {
         console.log(res);
         toast.success("User created successfully!",{position:"top-right"});
