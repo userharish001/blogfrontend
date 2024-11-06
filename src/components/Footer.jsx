@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const [current,setCurrent] = useState(new Date());
@@ -14,8 +15,8 @@ const Footer = () => {
        <p className="h3 text-danger">{current.toLocaleTimeString()}</p>
       <p>© {new Date().getFullYear()} Your Blog Name. All rights reserved.</p>
       <p>
-        <a href="/privacy">Privacy Policy</a> |{" "}
-        <a href="/terms">Terms of Service</a>
+        <Link to="https://www.privacypolicyonline.com/"className="text-decoration-none">Privacy Policy</Link>&nbsp;&nbsp;
+       <Link to="https://mailchimp.com/resources/website-terms-of-use"className="text-decoration-none">Term and Condition</Link>
       </p>
     </footer>
   );

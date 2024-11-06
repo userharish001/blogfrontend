@@ -36,10 +36,7 @@ const App = () => {
   const router = createBrowserRouter(
     createRoutesFromChildren(
       <Route path="/" element={<RootLayout />}>
-        <Route
-          index
-          element={<Home/>}
-        />
+        <Route index element={<Home />} />
         <Route path="about" element={<About />} />
         <Route path="posts" element={<Posts />} />
         <Route path="contact" element={<Contactus />} />
@@ -53,11 +50,11 @@ const App = () => {
   );
   return (
     <div className={darkMode ? "bg-dark text-light" : "bg-light text-dark"}>
-<label class="switch">
-    <input type="checkbox" onClick={toggleTheme}/>
-    <span class="slider"></span>
-</label>
       <RouterProvider router={router} />
+      <label class="switch">
+        <input type="checkbox" onClick={toggleTheme} />
+        <span class="slider"></span>
+      </label>
     </div>
   );
 };
