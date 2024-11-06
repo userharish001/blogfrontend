@@ -14,7 +14,7 @@ function Navbars() {
   const handleClose = () => setExpanded(false);
 
   return (
-    <div>
+    <div className="mb-5">
       <Navbar expand="lg" className="bg-body-tertiary fixed-top" expanded={expanded}>
         <Container fluid>
           <img className="fluid nav-image" src={blogimage2} alt="Logo" />
